@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+app-tri001,
+app-tri002 {
+  @import './app/programs-style/basic.scss';
+}
+
+app-tri001 {
+  @import './app/programs-style/tri001.component.scss';
+}

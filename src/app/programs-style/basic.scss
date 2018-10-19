@@ -1,0 +1,32 @@
+.standard-closed {
+  text-align: right; // position: top;
+}
+
+.standard-width {
+  // width: 50%;
+  margin: 8px;
+}
+
+tr:hover {
+  // color: #000000;
+  background-color: rgba(255, 0, 0, 0.2); // text-decoration: none;
+  // font-size: 16px;
+  // font-weight: bold;
+}
+
+.create-button-part {
+  padding-right: 20px;
+  padding-bottom: 20px;
+  float: right;
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  z-index: 10;
+}
+
+.mat-card {
+  // background: $rent-mat-card-backgroud-color;
+  width: 25%;
+  display: inline-grid;
+  margin: 20px;
+}

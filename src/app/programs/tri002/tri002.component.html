@@ -1,0 +1,32 @@
+<div>
+  <mat-form-field>
+    <input matInput type="number" step="0.01" [(ngModel)]="gmap.latit" placeholder="緯度" (ngModelChange)="getGmapURL()">
+  </mat-form-field>
+  <mat-form-field class="standard-width">
+    <input matInput type="number" step="0.01" [(ngModel)]="gmap.longit" placeholder="經度" (ngModelChange)="getGmapURL()">
+  </mat-form-field>
+  <mat-slider min="1" max="15" step="1" [(ngModel)]="gmap.scale" thumbLabel color="primary" (ngModelChange)="getGmapURL()"
+    class="standard-width"></mat-slider>
+  <mat-form-field>
+    <mat-select [(value)]="gmap.mode" (valueChange)="getGmapURL()">
+      <mat-option value="">預設</mat-option>
+      <mat-option value="h">衛星圖</mat-option>
+      <mat-option value="p">地形圖</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="standard-width">
+    <mat-select placeholder="地圖語言別" [(ngModel)]="gmap.language" (ngModelChange)="getGmapURL()" required>
+      <!-- <mat-option *ngFor="let cp of gmap.language" [value]="cp">
+          {{cp}}
+        </mat-option> -->
+
+      <mat-option value="zh-TW">中文</mat-option>
+      <mat-option value="en-GB">英文</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- {{gmap.mode}} -->
+</div>
+
+<iframe [width]="width" height="500" frameborder="50" [src]="frameUrl">
+</iframe>
+<!-- {{latit}} {{longit}} {{width}} -->
