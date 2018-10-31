@@ -21,6 +21,10 @@ export class ProgramsService {
     const getURL = 'https://wapi.gogoro.com/tw/api/vm/list';
     return this.http.get<any>(getURL);
   }
+  public getUbikeData(): Observable<any> {
+    const URL = 'http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000352-001';
+    return this.http.get<any>(URL);
+  }
   // http呼叫錯誤處理
   public HandleError(e: any): void {
     console.log(e.error.Message);

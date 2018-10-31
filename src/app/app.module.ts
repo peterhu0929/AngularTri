@@ -13,11 +13,14 @@ import { ProgramsService } from './programs/programs.service';
 import { Tri001Component } from './programs/tri001/tri001.component';
 import { Tri002Component } from './programs/tri002/tri002.component';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { PipeModule } from './_pipe/pipe.module';
+import { Code2namePipe } from './_pipe/code2name.pipe';
+import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Tri001Component, Tri002Component],
+    Tri001Component, Tri002Component, ShareDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -25,9 +28,10 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
     // RouterModule,
     HttpClientModule,
     AngularMaterialModule,
+    PipeModule
   ],
-  providers: [ProgramsService],
-  entryComponents: [],
+  providers: [],
+  entryComponents: [ShareDialogComponent],// 動態載入
   bootstrap: [AppComponent]
 })
 export class AppModule { }

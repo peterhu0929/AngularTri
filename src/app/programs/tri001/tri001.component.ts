@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ProgramsService } from '../programs.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { GGR } from 'src/app/_models/ggr';
+import { YoubikeStation } from '../../_models/youbike-station';
+import { ThrowStmt } from '@angular/compiler';
+import { ShareDialogService } from 'src/app/share-dialog/share-dialog.service';
+import { ShareDialogComponent } from 'src/app/share-dialog/share-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-tri001',
@@ -11,15 +16,34 @@ import { GGR } from 'src/app/_models/ggr';
 export class Tri001Component implements OnInit {
   public item: any;
   public items: Array<GGR>;
+  public uBike: Array<YoubikeStation> = new Array<YoubikeStation>();
+  // public uBike: any;
+  public uBikeOneSelected: Array<YoubikeStation> = new Array<YoubikeStation>();
+  public uBikeData: YoubikeStation = new YoubikeStation(); // 關鍵要new
+  public selectedData: YoubikeStation;
   // public vAddress: Array<VALUE_LANG>;
+  public strFormChild = ''; // <==兒子的回傳值的顯示屬性
+
   constructor(
-    private programService: ProgramsService) { }
+    private programService: ProgramsService,
+    private shareDialogService: ShareDialogService,
+  ) { }
 
   ngOnInit() {
-    this.getData();
+    // this.getData();
+    this.getUbikeData();
+  }
+  // Child模板事件發生時，會呼叫此方法回傳值
+  onListenChild($event: any) {
+    console.log($event);
+    this.strFormChild = $event as string;
   }
   public openSnackbar() {
-    this.programService.openSnackBar('鐵人三十天測試一波', '完成');
+    this.shareDialogService.openShareDialog('鐵人三十天測試一波');
+  }
+  public openDialog(item?: any) {
+    // this.shareDialogService.openShareDialog('鐵人三十天測試一波');
+    this.shareDialogService.openShareDialog(JSON.stringify(this.uBike[2]));
   }
   getData() {
     this.programService.getData()
@@ -38,5 +62,21 @@ export class Tri001Component implements OnInit {
         }
         , (error: HttpErrorResponse) => this.programService.HandleError(error)
       );
+  }
+  getUbikeData() {
+    this.programService.getUbikeData().subscribe(
+      (response: any) => {
+        this.uBike = response.result.records,
+          console.log(this.uBike);
+      },
+      (error: HttpErrorResponse) => this.programService.HandleError(error)
+    );
+  }
+  getUikeDataStation(item: YoubikeStation) {
+    // this.uBikeData = item;
+    this.uBikeOneSelected = [];
+    this.uBikeOneSelected.push(item);
+    console.log(this.uBikeData);
+    this.programService.openSnackBar(item.lat, item.lng);
   }
 }
