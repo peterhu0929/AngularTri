@@ -16,11 +16,13 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { PipeModule } from './_pipe/pipe.module';
 import { Code2namePipe } from './_pipe/code2name.pipe';
 import { ShareDialogComponent } from './share-dialog/share-dialog.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { TrinavComponent } from './programs/trinav/trinav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Tri001Component, Tri002Component, ShareDialogComponent],
+    Tri001Component, Tri002Component, ShareDialogComponent, TrinavComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -28,10 +30,11 @@ import { ShareDialogComponent } from './share-dialog/share-dialog.component';
     // RouterModule,
     HttpClientModule,
     AngularMaterialModule,
-    PipeModule
+    PipeModule,
+    LayoutModule,
   ],
   providers: [],
-  entryComponents: [ShareDialogComponent],// 動態載入
+  entryComponents: [ShareDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

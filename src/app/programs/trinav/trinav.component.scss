@@ -1,0 +1,32 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.demo-app-container,
+.demo-app-sidenav{
+  position: absolute;
+  padding-top: 64px;
+  height: calc(100vh - 64px);
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  // background: firebrick;
+}
+
+.toolbar-header {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background: firebrick;
+}
+
+.toolbar-seprator {
+  flex: 1 1 auto;
+}

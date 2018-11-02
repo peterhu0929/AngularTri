@@ -7,24 +7,15 @@ Pipe List
 <ul>
   <li>number</li>
   {{123456789.98765| number}}
-  <!--output 123,456,789.988-->
   {{3.14| number:'4.5-5'}}
-  <!--output 0,003.14000-->
   <li> currency</li>
   {{123456789.98765 | currency:'EUR'}}
-  <!--output €123,456,789.99 -->
-
   <li>json</li>
   {{uBikeData | json}}
-  <!--output { "sno": "1002", "sna": "汐止火車站", "tot": "56", "sbi": "37", "sarea": "汐止區", "mday": "20181024185321", "lat": "25.068914", "lng": "121.662748", "ar": "南昌街/新昌路口(西側廣場)", "sareaen": "Xizhi Dist.", "snaen": "Xizhi Railway Station", "aren": "Nanchang St./Xinchang Rd.", "bemp": "19", "act": "1" } -->
-
   <li>uppercase</li>
   {{uBikeData.sareaen| uppercase}}
-  <!--output XIZHI DIST.!-->
-
   <li>lowercase </li>
   {{uBikeData.snaen |lowercase}}
-  <!--output xizhi railway station-->
 </ul>
 
 {{900| code2name:'CompileStatus'}}
@@ -34,7 +25,7 @@ Pipe List
 
 
 
-<!-- <mat-checkbox>Check me!</mat-checkbox>
+<mat-checkbox>Check me!</mat-checkbox>
 <div class="standard-closed">
   <button mat-raised-button color="primary">Primary</button>
 </div>
@@ -46,17 +37,17 @@ Pipe List
 <mat-form-field class="standard-width standard-closed">
   <input matInput placeholder=" food" value="HAMBUGER">
 </mat-form-field>
- -->
 
 
-<button mat-fab color="warn" (click)="openDialog()">
+
+<!-- <button mat-fab color="warn" (click)="openDialog()">
   <span matTooltip="Search">
     <mat-icon>search</mat-icon>
   </span>
-</button>
-
+</button> -->
+<!--
 <h1 i18n="@@introductionHeader">Hello i18n!</h1>
-<h3 i18n="@@Hello">Hello</h3>
+<h3 i18n="@@Hello">Hello</h3> -->
 
 
 <!--
@@ -94,8 +85,8 @@ Pipe List
 </ul> -->
 <!-- </div> -->
 
-{{strFormChild}}
-我是兒子的時間 => <span style='color:red'> {{ strFormChild | date : 'yyyy-MM-dd hh:mm:ss' }}</span>
+<!-- {{strFormChild}} -->
+時間 => <span style='color:red'> {{ strFormChild | date : 'yyyy-MM-dd hh:mm:ss' }}</span>
 <div *ngFor="
     let i of uBikeOneSelected">
   {{i.sna}}-
@@ -105,11 +96,4 @@ Pipe List
   <app-tri002 [width]="'80%'" [latit]="i.lat" [longit]='i.lng' (childEvent)="onListenChild($event);"></app-tri002>
 </div>
 
-
-
-
-<!-- <div *ngFor="let i of items">
-  {{i.Address.List[1].Value}} {{i.City.List[1].Value}}
-</div> -->
-<!-- {{this.vAddress}} -->
 <!-- <app-tri002 [width]="'80%'" [latit]="'23.58'" [longit]='"120.58" '></app-tri002> -->

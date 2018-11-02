@@ -75,6 +75,11 @@ export class Tri001Component implements OnInit {
   getUikeDataStation(item: YoubikeStation) {
     // this.uBikeData = item;
     this.uBikeOneSelected = [];
+
+    // const refreshTime = item.mday.substring(0, 4);
+
+    // item.mday = refreshTime;
+
     this.uBikeOneSelected.push(item);
     console.log(this.uBikeData);
     this.programService.openSnackBar(item.lat, item.lng);

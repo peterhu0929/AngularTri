@@ -18,11 +18,15 @@ export class Tri002Component implements OnInit {
 
   public count = 0;
   frameUrl: any;
-  localization: any;
+  // localization: any;
   constructor(private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
+
+    this.width = (this.width == null) ? '80%' : this.width;
+    this.latit = (this.latit == null) ? '23.58' : this.latit;
+    this.longit = (this.longit == null) ? '120.58' : this.longit;
     this.gmap.latit = this.latit;
     this.gmap.longit = this.longit;
     this.gmap.language = 'zh-TW';
@@ -36,20 +40,22 @@ export class Tri002Component implements OnInit {
     // console.log(this.longit);
   }
   getGmapURL() {
-    this.gmap.latit = this.latit;
-    this.gmap.longit = this.longit;
+    // this.gmap.latit = this.latit;
+    // this.gmap.longit = this.longit;
     const URL = 'https://www.google.com/maps?q='
       + this.gmap.latit + ',' + this.gmap.longit + '&hl=' + this.gmap.language
       + '&z=' + this.gmap.scale + '&t=' + this.gmap.mode + '&output=embed';
     console.log(URL);
     this.onChildClick();
     return this.frameUrl = this.sanitizer.bypassSecurityTrustResourceUrl(URL);
+    // return this.frameUrl = URL;
+
   }
   onChildClick() {
     // this.childEvent.emit(new Date());
     const nowTime = new Date();
 
     this.count = this.count + 1;
-    this.childEvent.emit(this.count);
+    this.childEvent.emit(nowTime);
   }
 }

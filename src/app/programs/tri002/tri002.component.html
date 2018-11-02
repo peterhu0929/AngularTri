@@ -8,7 +8,7 @@
   <mat-slider min="1" max="15" step="1" [(ngModel)]="gmap.scale" thumbLabel color="primary" (ngModelChange)="getGmapURL()"
     class="standard-width"></mat-slider>
   <mat-form-field>
-    <mat-select [(value)]="gmap.mode" (valueChange)="getGmapURL()">
+    <mat-select [(ngModel)]="gmap.mode" (ngModelChange)="getGmapURL()">
       <mat-option value="">預設</mat-option>
       <mat-option value="h">衛星圖</mat-option>
       <mat-option value="p">地形圖</mat-option>
@@ -25,9 +25,13 @@
     </mat-select>
   </mat-form-field>
   <!-- {{gmap.mode}} -->
-  <button (click)="onChildClick()">回傳父親時間</button>
+  <!-- <button (click)="onChildClick()">回傳父親時間</button> -->
 </div>
 
 <iframe [width]="width" height="500" frameborder="50" [src]="frameUrl">
 </iframe>
+
+<!-- <iframe width="60%" height="500" frameborder="50" [src]="frameUrl">
+</iframe> -->
+
 <!-- {{latit}} {{longit}} {{width}} -->
