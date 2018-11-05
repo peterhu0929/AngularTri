@@ -1,0 +1,53 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  position: fixed;
+  top: 64px;
+  left: 0;
+}
+//右邊的sidenav
+.sidenavRight {
+  width: 250px;
+  position: fixed;
+  top: 64px;
+}
+//標頭toolbar
+.header-toolbar {
+  padding: 0 16px 0 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+}
+//選單toolbar
+.menu-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.mat-drawer-content.mat-sidenav-content {
+  margin-top: 100px
+}
+
+//分隔toolbar內的空間
+.toolbar-seprator {
+  flex: 1 1 auto;
+}
+//list底線
+.l-sub-section {
+  color: #333;
+  background-color: #e2effb;
+  padding: 3px;
+  margin-bottom: 8px;
+  display: table;
+  clear: both;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
