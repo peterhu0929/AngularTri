@@ -5,9 +5,13 @@ import { Tri002Component } from './programs/tri002/tri002.component';
 import { TrinavComponent } from './programs/trinav/trinav.component';
 
 const routes: Routes =
-  [{ path: 'tri001', component: Tri001Component },
-  { path: 'tri002', component: Tri002Component },
-  { path: 'trinav', component: TrinavComponent }];
+  [{
+    path: 'trinav', component: TrinavComponent,
+    children: [
+      { path: 'tri001', component: Tri001Component },
+      { path: 'tri002', component: Tri002Component }]
+  },
+  ];
 
 @NgModule({
   imports: [
