@@ -1,28 +1,64 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="warn" class="header-toolbar">
   <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleSideNav(drawer)">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <span>AngularTri</span>
-  <span>{{programName}}</span>
   <span class="toolbar-seprator"></span>
-  <button mat-icon-button>
-    <mat-icon>verified_user</mat-icon>
+  <span>{{programName}}</span>
+  <button mat-icon-button (click)="toggleSideNav(drawerRight)">
+    <mat-icon>face</mat-icon>
   </button>
   <button mat-icon-button>
     <mat-icon>exit_to_app</mat-icon>
   </button>
 </mat-toolbar>
 <mat-sidenav-container fixedInViewport="true">
-  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'push ' : 'side'"
-    [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
+  <mat-sidenav #drawer position="start" mode="side" class="sidenav" opened>
+    <mat-toolbar color="primary">
+      <span>Program</span>
+      <span>
+        <mat-icon>verified_user</mat-icon>
+      </span>
+    </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="/tri001" (click)="show('Tri001')">Tri001</a>
-      <a mat-list-item href="/tri002" (click)="show('Tri002')">Tri002</a>
-      <a mat-list-item href="/tri001">Link 3</a>
+      <a mat-list-item routerLink="./tri001" (click)="show('Tri001')">Tri001</a>
+      <a mat-list-item routerLink="./tri002" (click)="show('Tri002')">Tri002</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mat-sidenav-container fixedInViewport="true">
+  <mat-sidenav #drawerRight position="end" mode="side" class="sidenavRight">
+    <mat-toolbar color="primary">
+      <span>基本資料</span>
+      <span>
+        <mat-icon>verified_user</mat-icon>
+      </span>
+    </mat-toolbar>
+    <mat-list>
+      <mat-list-item class="l-sub-section">
+        <mat-icon>code</mat-icon>
+        Peterhu2Tri
+      </mat-list-item>
+      <mat-list-item class="l-sub-section">
+        <mat-icon>account_circle</mat-icon>
+        三十天鐵人賽
+      </mat-list-item>
+      <mat-list-item class="l-sub-section">
+        <mat-icon>account_balance</mat-icon>
+        IT
+      </mat-list-item>
+      <mat-list-item class="l-sub-section">
+        <mat-icon>phone</mat-icon>
+        165
+      </mat-list-item>
+      <mat-list-item class="l-sub-section">
+        <mat-icon>email</mat-icon>
+        Peterhu2Tri@gmail.com
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
 </mat-sidenav-container>

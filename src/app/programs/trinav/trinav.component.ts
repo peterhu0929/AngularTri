@@ -7,7 +7,7 @@ import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
 @Component({
   selector: 'app-trinav',
   templateUrl: './trinav.component.html',
-  styleUrls: ['./trinav.component.scss']
+  // styleUrls: ['./trinav.component.scss']
 })
 export class TrinavComponent {
 
@@ -15,12 +15,12 @@ export class TrinavComponent {
     .pipe(
       map(result => result.matches)
     );
-  programName: string;
+  programName = 'Tri001';
   constructor(private breakpointObserver: BreakpointObserver) { }
   toggleSideNav(drawer: MatSidenav) {
     drawer.toggle().then((result: MatDrawerToggleResult) => {
       console.log('選單狀態：' + result);
-      console.log(this.isHandset$);
+      console.log(drawer);
     });
   }
   show(item: string) {
