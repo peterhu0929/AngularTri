@@ -15,7 +15,7 @@ import { MatDialog } from '@angular/material';
 })
 export class Tri001Component implements OnInit {
   public item: any;
-  public items: Array<GGR>;
+  public items: Array<any>;
   public uBike: Array<YoubikeStation> = new Array<YoubikeStation>();
   // public uBike: any;
   public uBikeOneSelected: Array<YoubikeStation> = new Array<YoubikeStation>();
@@ -30,8 +30,8 @@ export class Tri001Component implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.getData();
-    this.getUbikeData();
+    this.getData();
+    // this.getUbikeData();
   }
   // Child模板事件發生時，會呼叫此方法回傳值
   onListenChild($event: any) {
@@ -49,7 +49,7 @@ export class Tri001Component implements OnInit {
     this.programService.getData()
       .subscribe(
         (response: any) => {
-          this.items = response.data;
+          this.items = response;
           // 20181022
           // this.items.map(x => { x.Address = JSON.parse(x.Address), x.City = JSON.parse(x.City); });
           // this.items[0].Address.List[1].Value
