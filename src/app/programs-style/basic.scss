@@ -1,19 +1,12 @@
-.standard-closed {
-  text-align: right; // position: top;
+// Collin支援DataTable標頭固定
+.mat-header-cell {
+  top: 0;
+  position: sticky;
+  z-index: 1;
+  background-color: white;
 }
 
-.standard-width {
-  // width: 50%;
-  margin: 8px;
-}
-
-tr:hover {
-  // color: #000000;
-  background-color: rgba(255, 0, 0, 0.2); // text-decoration: none;
-  // font-size: 16px;
-  // font-weight: bold;
-}
-
+// //Rocky支援右下角button
 .create-button-part {
   padding-right: 20px;
   padding-bottom: 20px;
@@ -24,9 +17,52 @@ tr:hover {
   z-index: 10;
 }
 
+.standard-width {
+  // width: 50%;
+  margin: 8px;
+}
+
+.standard-closed {
+  text-align: right; // position: top;
+}
+
+tr:hover {
+  // color: #000000;
+  background-color: rgba(255, 0, 0, 0.1); // text-decoration: none;
+  // font-size: 16px;
+  // font-weight: bold;
+}
+
+tr.active {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+//click後才會有行為
+// tr:active {
+//   background-color: yellowgreen;
+// }
+.example-container {
+  height: 400px; // 表格高度
+  width: 1900px; // 表格寬度
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
 .mat-card {
-  // background: $rent-mat-card-backgroud-color;
-  width: 25%;
+  background: lightskyblue;
+  width: 20%;
   display: inline-grid;
   margin: 20px;
+}
+
+.rentCard {
+  width: auto;
+  display: grid;
+}
+
+mat-card:focus {
+  background: lightblue;
 }

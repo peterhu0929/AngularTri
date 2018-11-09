@@ -26,7 +26,7 @@ export class Tri001Component implements OnInit {
 
   constructor(
     private programService: ProgramsService,
-    private shareDialogService: ShareDialogService,
+    private shareDialogService: ShareDialogService
   ) { }
 
   ngOnInit() {

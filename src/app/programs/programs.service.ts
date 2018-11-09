@@ -25,10 +25,18 @@ export class ProgramsService {
       // horizontalPosition: 'right'
     });
   }
+
+  public getBackendData(
+  ): Observable<any> {
+    const getURL = 'https://netcoretri30days.azurewebsites.net/api/Triathlon/GetAllTri';
+    return this.http.get<any>(getURL);
+  }
   public getData(
   ): Observable<any> {
-    const getURL = 'https://netcoretri30days.azurewebsites.net/api/user/GetAllUser';
-    return this.http.get<any>(getURL, this.httpOptions);
+    // const getURL = 'https://netcoretri30days.azurewebsites.net/api/user/GetAllUser';
+    // return this.http.get<any>(getURL, this.httpOptions);
+    const getURL = '../../assets/jsonData.json';
+    return this.http.get<any>(getURL);
   }
   public getUbikeData(): Observable<any> {
     const URL = 'http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000352-001';

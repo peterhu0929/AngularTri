@@ -1,0 +1,47 @@
+{
+  "isSuccess": true,
+  "data": [{
+    "_id": "5be0f2921b4ebb0528045146",
+    "date": "2018/11/11",
+    "year": "2018",
+    "month": "11",
+    "day": "11",
+    "place": "新北市",
+    "name": "LAVA TRI 鐵人三項－新北福隆站",
+    "event": [{
+        "eventgroup": "51.1K",
+        "eventname": "標鐵組",
+        "startDate": "20181111",
+        "startTime": "6:30 新北市福隆海水浴場",
+        "cost": "3500元",
+        "timelimit": "4小時10分"
+      },
+      {
+        "eventgroup": "53K",
+        "eventname": "鐵人兩項",
+        "startDate": "20181111",
+        "startTime": "6:50 龍門運動公園",
+        "cost": "1900元",
+        "timelimit": "3小時50分"
+      },
+      {
+        "eventgroup": "51.1K",
+        "eventname": "標鐵接力組",
+        "startDate": "20181111",
+        "startTime": "6:30 新北市福隆海水浴場",
+        "cost": "5700元",
+        "timelimit": "4小時10分"
+      }
+    ],
+    "remark": "福隆三鐵比一波",
+    "organizer": "台灣耐力運動協會",
+    "location": "福隆海水浴場",
+    "locationmap": "https://www.google.com.tw/maps/place/%E7%A6%8F%E9%9A%86%E6%B5%B7%E6%B0%B4%E6%B5%B4%E5%A0%B4",
+    "applydate": "【報名日期】2018/08/10 12:00 ~ 2018/09/30 23:59",
+    "onlineapplyurl": "http://bao-ming.com/eb/www/reg.php?activitysn=3182",
+    "status": "已截止報名",
+    "in_date": "2018/11/08",
+    "up_date": "2018/11/09"
+  }],
+  "errorMessage": null
+}

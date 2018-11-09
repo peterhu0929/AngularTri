@@ -17,13 +17,15 @@ import { PipeModule } from './_pipe/pipe.module';
 import { Code2namePipe } from './_pipe/code2name.pipe';
 import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { TrieventComponent } from './programs/trievent/trievent.component';
+import { TrieventDetailComponent } from './programs/trievent/trievent-detail/trievent-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TrinavComponent,
-    Tri001Component, Tri002Component, ShareDialogComponent],
+    Tri001Component, Tri002Component, ShareDialogComponent, TrieventComponent, TrieventDetailComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -35,7 +37,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     LayoutModule,
   ],
   providers: [],
-  entryComponents: [ShareDialogComponent],
+  entryComponents: [ShareDialogComponent, TrieventDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

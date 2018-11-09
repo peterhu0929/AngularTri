@@ -15,7 +15,7 @@ export class TrinavComponent {
     .pipe(
       map(result => result.matches)
     );
-  programName = 'Tri001';
+  programName = 'Tri-Event';
   constructor(private breakpointObserver: BreakpointObserver) { }
   toggleSideNav(drawer: MatSidenav) {
     drawer.toggle().then((result: MatDrawerToggleResult) => {

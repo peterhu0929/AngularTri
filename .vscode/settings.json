@@ -1,5 +1,5 @@
 {
     "git.ignoreLimitWarning": true,
     "appService.deploySubpath": "dist\\AngularTri",
-    "appService.defaultWebAppToDeploy": "/subscriptions/ffa6217d-0fed-4316-9b5d-edf86edfb975/resourceGroups/angularTri30Days/providers/Microsoft.Web/sites/angularTri30Days"
+    "appService.defaultWebAppToDeploy": "/subscriptions/ffa6217d-0fed-4316-9b5d-edf86edfb975/resourceGroups/30Days/providers/Microsoft.Web/sites/30Days"
 }

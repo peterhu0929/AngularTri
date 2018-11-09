@@ -1,0 +1,35 @@
+<div class=" row col-md-12 col-lg-12">
+  <mat-card *ngFor="let results of eventData">
+
+    <mat-card-content>
+      <label>組別:</label>
+      <h3>{{results.eventgroup}}</h3>
+    </mat-card-content>
+    <mat-card-content>
+      <label>組別名稱</label>
+      <h3>{{results.name}}</h3>
+    </mat-card-content>
+    <mat-card-content>
+      <label>比賽日期:</label>
+      <h3>{{results.startDate}}</h3>
+    </mat-card-content>
+    <mat-card-content>
+      <label>出發時間: </label>
+      <h3>{{results.startTime}}</h3>
+    </mat-card-content>
+    <mat-card-content>
+      <label>報名費: </label>
+      <h3>{{results.cost}}</h3>
+    </mat-card-content>
+    <mat-card-content>
+      <label>時間限制:</label>
+      <h3>{{results.timelimit}}</h3>
+    </mat-card-content>
+    <!--
+      <button mat-raised-button color="primary" style="width:100%" (click)="viewDetail(results)">交易單細節</button>
+    </mat-card-actions>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" style="width:100%" (click)="viewDetailByVoucher(results)">現金傳票細節</button>
+    </mat-card-actions> -->
+  </mat-card>
+</div>

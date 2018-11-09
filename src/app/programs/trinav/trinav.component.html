@@ -13,7 +13,7 @@
   </button>
 </mat-toolbar>
 <mat-sidenav-container fixedInViewport="true">
-  <mat-sidenav #drawer position="start" mode="side" class="sidenav" opened>
+  <mat-sidenav #drawer position="start" mode="push" class="sidenav" opened>
     <mat-toolbar color="primary">
       <span>Program</span>
       <span>
@@ -21,6 +21,7 @@
       </span>
     </mat-toolbar>
     <mat-nav-list>
+      <a mat-list-item routerLink="./trievent" (click)="show('Tri-Event')">Tri-Event</a>
       <a mat-list-item routerLink="./tri001" (click)="show('Tri001')">Tri001</a>
       <a mat-list-item routerLink="./tri002" (click)="show('Tri002')">Tri002</a>
     </mat-nav-list>
