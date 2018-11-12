@@ -6,6 +6,7 @@ import { Triathlon } from '../../_models/triathlon';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { TrieventDetailComponent } from './trievent-detail/trievent-detail.component';
 import { fakedata } from './fakedata';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trievent',
@@ -31,11 +32,13 @@ export class TrieventComponent implements OnInit {
   constructor(
     private programService: ProgramsService,
     private shareDialogService: ShareDialogService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _router: Router,
   ) { }
 
   ngOnInit() {
     this.getTriData();
+    this.tridataTable.sort = this.sortTable;
     // this.tridataTable.data = fakedata;
   }
   getTriData() {
@@ -45,12 +48,23 @@ export class TrieventComponent implements OnInit {
           this.tridata = response.data;
           this.tridataTable.data = response.data;
           this.tridataTable.paginator = this.paginator;
+          this.tridataTable.sort = this.sortTable;
           this.totalCount = response.data.length;
           console.log(this.tridata);
           console.log(this.tridataTable.data);
         }
         , (error: HttpErrorResponse) => this.programService.HandleError(error)
       );
+  }
+
+  addTriData(data?: Triathlon) {
+    // console.log(data);
+    this._router.navigate(['/trievent-Add'], {
+      queryParams: {
+        // pAgentCode: data.AGENT_CODE,
+        // pLoginUser: this.webLfcUserInfo.LOGIN_USER
+      }
+    });
   }
 
 
@@ -77,14 +91,16 @@ export class TrieventComponent implements OnInit {
     }
   }
   updateTriData(item: Triathlon) {
-    this.programService.putBackendData(item)
+   this.shareDialogService.openShareDialog(JSON.stringify(item));
+    this.programService
+      .putBackendData(item)
       .subscribe(
         (response: any) => {
           console.log(item);
           this.programService.openSnackBar(response.isSuccess, '已修改');
           console.log(response);
-        }
-        , (error: HttpErrorResponse) => this.programService.HandleError(error)
+        },
+        (error: HttpErrorResponse) => this.programService.HandleError(error)
       );
   }
   deleteTriData(pID: string) {

@@ -17,5 +17,4 @@ export class Triathlon {
   status: string;
   in_date: string;
   up_date: string;
-
 }

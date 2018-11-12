@@ -1,0 +1,15 @@
+.mat-card {
+  background: lightskyblue;
+  width: 20%;
+  display: inline-grid;
+  margin: 20px;
+}
+
+.rentCard {
+  width: auto;
+  display: grid;
+}
+
+mat-card:focus {
+  background: lightblue;
+}

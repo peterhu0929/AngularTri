@@ -4,13 +4,21 @@
 app-tri001,
 app-tri002,
 app-trievent,
-app-trievent-detail {
+app-trievent-detail,
+app-trievent-add {
   @import './app/programs-style/basic.scss';
 }
 
 app-tri001 {
   @import './app/programs-style/tri001.component.scss';
 }
+app-trievent-detail {
+  @import './app/programs-style/trievent-detail.component.scss';
+}
+app-trievent-add{
+  @import'./app/programs-style/trievent-add.component.scss';
+}
+
 
 app-trinav {
   @import './app/programs-style/trinav.component.scss';

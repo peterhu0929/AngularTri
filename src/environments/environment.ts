@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  TriBackendAPI: 'https://netcoretri30days.azurewebsites.net/api'
+  TriBackendAPI: 'https://localhost:5001/api'
 };
 
 /*

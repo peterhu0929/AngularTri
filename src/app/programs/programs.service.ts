@@ -8,11 +8,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProgramsService {
 
 
   constructor(private http: HttpClient,
     public snackBar: MatSnackBar) { }
+
+  public updateData: Triathlon;
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -27,24 +30,34 @@ export class ProgramsService {
       // horizontalPosition: 'right'
     });
   }
-
   public getBackendData(
   ): Observable<any> {
     const getURL = environment.TriBackendAPI + '/Triathlon/GetAllTri';
-    return this.http.get<any>(getURL);
+    return this.http.get<Triathlon>(getURL);
   }
-  public putBackendData(item: Triathlon
-  ): Observable<any> {
-    const _id = item.id;
-    const URL = environment.TriBackendAPI + '/Triathlon/UpdateTri?Id=' + _id;
+  public postBackendData(item: Triathlon): Observable<any> {
+    // const _id = item.id;
+    const URL = environment.TriBackendAPI + '/Triathlon/AddTri';
     console.log(URL);
     console.log(item);
-    return this.http.put<any>(URL, item, this.httpOptions);
+    delete item.id;
+    return this.http.post<Triathlon>(URL, item);
+  }
+  public putBackendData(item: Triathlon): Observable<any> {
+    // const _id = item.id;
+    const URL = environment.TriBackendAPI + '/Triathlon/UpdateTri?Id=' + item.id;
+    console.log(URL);
+    console.log(item);
+    delete item.id;
+    // this.updateData = new Triathlon();
+    // this.updateData = item;
+    // console.log(this.updateData);
+    return this.http.put<Triathlon>(URL, item);
   }
   public deleteBackendData(id: string): Observable<any> {
     const URL = environment.TriBackendAPI + '/Triathlon/DeleteTri?Id=' + id;
     console.log(URL);
-    return this.http.delete<any>(URL);
+    return this.http.delete<Triathlon>(URL);
   }
   public getData(
   ): Observable<any> {
