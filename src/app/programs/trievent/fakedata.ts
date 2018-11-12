@@ -1,6 +1,6 @@
 import { Triathlon } from '../../_models/triathlon';
 export const fakedata: Triathlon[] = [{
-  _id: '5be0f2921b4ebb0528045146',
+  id: '5be0f2921b4ebb0528045146',
   date: '2018/11/11',
   year: '2018',
   month: '11',

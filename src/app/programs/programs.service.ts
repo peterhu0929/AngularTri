@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Triathlon } from '../_models/triathlon';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class ProgramsService {
     public snackBar: MatSnackBar) { }
   public httpOptions = {
     headers: new HttpHeaders({
-      // 'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'https://netcoretri30days.azurewebsites.net',
       'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
       'Access-Control-Max-Age': '86400'
@@ -28,8 +30,21 @@ export class ProgramsService {
 
   public getBackendData(
   ): Observable<any> {
-    const getURL = 'https://netcoretri30days.azurewebsites.net/api/Triathlon/GetAllTri';
+    const getURL = environment.TriBackendAPI + '/Triathlon/GetAllTri';
     return this.http.get<any>(getURL);
+  }
+  public putBackendData(item: Triathlon
+  ): Observable<any> {
+    const _id = item.id;
+    const URL = environment.TriBackendAPI + '/Triathlon/UpdateTri?Id=' + _id;
+    console.log(URL);
+    console.log(item);
+    return this.http.put<any>(URL, item, this.httpOptions);
+  }
+  public deleteBackendData(id: string): Observable<any> {
+    const URL = environment.TriBackendAPI + '/Triathlon/DeleteTri?Id=' + id;
+    console.log(URL);
+    return this.http.delete<any>(URL);
   }
   public getData(
   ): Observable<any> {

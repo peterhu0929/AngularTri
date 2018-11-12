@@ -1,6 +1,6 @@
 import { EVENT } from './event';
 export class Triathlon {
-  _id: string;
+  id: string;
   date: string;
   year: string;
   month: string;

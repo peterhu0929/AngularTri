@@ -24,8 +24,8 @@ export class TrieventComponent implements OnInit {
   public tridataTable = new MatTableDataSource<Triathlon>();
   public totalCount = 0;
   public tridata: Array<Triathlon>;
-  displayedColumns: string[] = ['EDIT_BUTTON', 'DELETE_BUTTON', 'year', 'month'
-    , 'day', 'place', 'name', 'organizer', 'location', 'applydate', 'status', 'Detail'];
+  displayedColumns: string[] = ['EDIT_BUTTON', 'DELETE_BUTTON', 'Detail', 'date', 'year', 'month'
+    , 'day', 'place', 'name', 'organizer', 'location', 'applydate', 'status'];
 
   // 'locationmap', 'onlineapplyurl'
   constructor(
@@ -67,6 +67,7 @@ export class TrieventComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+  // Data Table Filter功能
   applyFilter(filterValue: string) {
     // console.log(filterValue);
     if (filterValue.length >= 2) {
@@ -75,7 +76,28 @@ export class TrieventComponent implements OnInit {
       this.tridataTable.filter = null;
     }
   }
-  updateSnackbar() {
-    this.programService.openSnackBar('', '已修改');
+  updateTriData(item: Triathlon) {
+    this.programService.putBackendData(item)
+      .subscribe(
+        (response: any) => {
+          console.log(item);
+          this.programService.openSnackBar(response.isSuccess, '已修改');
+          console.log(response);
+        }
+        , (error: HttpErrorResponse) => this.programService.HandleError(error)
+      );
+  }
+  deleteTriData(pID: string) {
+    this.programService.deleteBackendData(pID)
+      .subscribe(
+        (response: any) => {
+          console.log(pID);
+          // this.programService.openSnackBar(response.isSuccess, '已');
+          this.shareDialogService.openShareDialog(response.isSuccess + '已刪除');
+          console.log(response);
+          this.getTriData();
+        }
+        , (error: HttpErrorResponse) => this.programService.HandleError(error)
+      );
   }
 }

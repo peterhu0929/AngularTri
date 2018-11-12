@@ -38,7 +38,7 @@
                 <mat-icon>clear</mat-icon>
               </span>
             </button>
-            <button *ngIf=row.isDisabled mat-mini-fab color="primary" (click)="updateSnackbar();row.isDisabled=false">
+            <button *ngIf=row.isDisabled mat-mini-fab color="primary" (click)="updateTriData(row);row.isDisabled=false">
               <span matTooltip="Confirm">
                 <mat-icon>send</mat-icon>
               </span>
@@ -48,10 +48,11 @@
         <ng-container matColumnDef="DELETE_BUTTON">
           <th mat-header-cell *matHeaderCellDef>停用</th>
           <td mat-cell *matCellDef="let row">
-            <!-- <button mat-mini-fab color="warn" (click)="openCancelDialog(row)" *ngIf="!deleteIcon(row)">
-            <mat-icon>delete</mat-icon>
-          </button> -->
+            <button mat-mini-fab color="warn" (click)="deleteTriData(row.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
+          <!-- *ngIf="!deleteIcon(row)" -->
         </ng-container>
         <ng-container matColumnDef="DELETE_YN">
           <th mat-header-cell *matHeaderCellDef>是否中止合約
@@ -75,7 +76,16 @@
         </ng-container>
         <ng-container matColumnDef="day">
           <th mat-header-cell *matHeaderCellDef>day</th>
-          <td mat-cell *matCellDef="let row">{{ row.day }}</td>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.isDisabled">
+              <mat-form-field class="inputSize">
+                <input matInput [(ngModel)]="row.day">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.day }}
+            </div>
+          </td>
         </ng-container>
         <ng-container matColumnDef="place">
           <th mat-header-cell *matHeaderCellDef>place</th>
@@ -83,7 +93,7 @@
         </ng-container>
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>name</th>
-          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+          <td mat-cell *matCellDef="let row">{{row.name}}</td>
         </ng-container>
         <ng-container matColumnDef="RENTED_START_DATE">
           <th mat-header-cell *matHeaderCellDef>租約開始日</th>
@@ -125,19 +135,6 @@
           <th mat-header-cell *matHeaderCellDef>onlineapplyurl</th>
           <td mat-cell *matCellDef="let row">{{ row.onlineapplyurl }}</td>
         </ng-container>
-        <!--
-      <ng-container matColumnDef="UNIT_RENT_CAR_SPACE">
-        <th mat-header-cell *matHeaderCellDef>每席車位租金單價</th>
-        <td mat-cell *matCellDef="let row">{{ row.UNIT_RENT_CAR_SPACE }}</td>
-      </ng-container>
-      <ng-container matColumnDef="MONTH_RENT_CAR_SPACE">
-        <th mat-header-cell *matHeaderCellDef>每月車位租金</th>
-        <td mat-cell *matCellDef="let row">{{ row.MONTH_RENT_CAR_SPACE }}</td>
-      </ng-container>
-      <ng-container matColumnDef="ADJ_RENT_METHOD">
-        <th mat-header-cell *matHeaderCellDef>租金調整方式</th>
-        <td mat-cell *matCellDef="let row">{{ row.ADJ_RENT_METHOD }}</td>
-      </ng-container> -->
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>status</th>
           <td mat-cell *matCellDef="let row">{{ row.status }}</td>
@@ -149,7 +146,7 @@
         </ng-container>
 
         <ng-container matColumnDef="Detail">
-          <th mat-header-cell *matHeaderCellDef>細節</th>
+          <th mat-header-cell *matHeaderCellDef>競賽組別</th>
           <td mat-cell *matCellDef="let row">
             <button mat-mini-fab color="accent" (click)="openDetailDialog(row.tri_event)">
               <mat-icon>
