@@ -4,8 +4,7 @@ import { EVENT } from '../../../_models/event';
 
 @Component({
   selector: 'app-trievent-detail',
-  templateUrl: './trievent-detail.component.html',
-  styleUrls: ['./trievent-detail.component.scss']
+  templateUrl: './trievent-detail.component.html'
 })
 export class TrieventDetailComponent implements OnInit {
 

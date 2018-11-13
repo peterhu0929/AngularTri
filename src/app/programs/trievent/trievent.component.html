@@ -11,6 +11,11 @@
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     <mat-hint align="end">至少打兩個字</mat-hint>
   </mat-form-field>
+<button mat-fab color="warn" (click)="addTriData()">
+  <span matTooltip="Add">
+    <mat-icon>add</mat-icon>
+  </span>
+</button>
 
   <!-- {{tridata|json}}
 <div *ngFor="let i of tridata">
@@ -21,7 +26,7 @@
 </div> -->
 
   <div>
-    <mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]">
+<mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]" matSort>
     </mat-paginator>
     <div>
       <table mat-table [dataSource]="tridataTable" matSort #sortTableUser="matSort">
@@ -91,8 +96,8 @@
           <th mat-header-cell *matHeaderCellDef>place</th>
           <td mat-cell *matCellDef="let row">{{ row.place }}</td>
         </ng-container>
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>name</th>
+        <ng-container matColumnDef="name" >
+<th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
           <td mat-cell *matCellDef="let row">{{row.name}}</td>
         </ng-container>
         <ng-container matColumnDef="RENTED_START_DATE">

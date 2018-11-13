@@ -1,0 +1,15 @@
+.mat-card {
+  background: seashell;
+  width: 20%;
+  display: initial;
+  margin: 20px;
+}
+
+.rentCard {
+  width: auto;
+  display: grid;
+}
+
+mat-card:focus {
+  background: seashell;
+}

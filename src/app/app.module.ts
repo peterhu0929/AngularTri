@@ -19,13 +19,14 @@ import { ShareDialogComponent } from './share-dialog/share-dialog.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { TrieventComponent } from './programs/trievent/trievent.component';
 import { TrieventDetailComponent } from './programs/trievent/trievent-detail/trievent-detail.component';
+import { TrieventAddComponent } from './programs/trievent/trievent-add/trievent-add.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TrinavComponent,
-    Tri001Component, Tri002Component, ShareDialogComponent, TrieventComponent, TrieventDetailComponent],
+    Tri001Component, Tri002Component, ShareDialogComponent, TrieventComponent, TrieventDetailComponent, TrieventAddComponent],
   imports: [
     BrowserModule,
     FormsModule,
