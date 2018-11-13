@@ -7,6 +7,8 @@ import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/m
 import { TrieventDetailComponent } from './trievent-detail/trievent-detail.component';
 import { fakedata } from './fakedata';
 import { Router } from '@angular/router';
+import { VTriathlon } from 'src/app/_models/vtriathlon';
+import { RecordGroup } from 'src/app/_models/RecordGroup';
 
 @Component({
   selector: 'app-trievent',
@@ -25,11 +27,24 @@ export class TrieventComponent implements OnInit {
   public tridataTable = new MatTableDataSource<Triathlon>();
   public totalCount = 0;
   public tridata: Array<Triathlon>;
-  public queryTridata: Triathlon = new Triathlon();
+  public queryTridata: VTriathlon = new VTriathlon();
   displayedColumns: string[] = ['EDIT_BUTTON', 'DELETE_BUTTON', 'Detail', 'year', 'month'
     , 'day', 'place', 'name', 'organizer', 'location', 'applydate', 'status'];
 
-  // 'locationmap', 'onlineapplyurl'
+  months: RecordGroup[] = [
+    { CODE: '01', NAME: '1' },
+    { CODE: '02', NAME: '2' },
+    { CODE: '03', NAME: '3' },
+    { CODE: '04', NAME: '4' },
+    { CODE: '05', NAME: '5' },
+    { CODE: '06', NAME: '6' },
+    { CODE: '07', NAME: '7' },
+    { CODE: '08', NAME: '8' },
+    { CODE: '09', NAME: '9' },
+    { CODE: '10', NAME: '10' },
+    { CODE: '11', NAME: '11' },
+    { CODE: '12', NAME: '12' },
+  ];
   constructor(
     private programService: ProgramsService,
     private shareDialogService: ShareDialogService,
@@ -82,7 +97,7 @@ export class TrieventComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-  getTriDataByQuery(item: Triathlon) {
+  getTriDataByQuery(item: VTriathlon) {
     this.programService.getBackendDataByQuery(item)
       .subscribe(
         (response: any) => {
@@ -112,7 +127,7 @@ export class TrieventComponent implements OnInit {
       .subscribe(
         (response: any) => {
           console.log(item);
-          this.programService.openSnackBar(response.isSuccess, '已修改');
+          this.programService.openSnackBar(response.data.name, '已修改');
           console.log(response);
         },
         (error: HttpErrorResponse) => this.programService.HandleError(error)
@@ -124,7 +139,7 @@ export class TrieventComponent implements OnInit {
         (response: any) => {
           console.log(pID);
           // this.programService.openSnackBar(response.isSuccess, '已');
-          this.shareDialogService.openShareDialog(response.isSuccess + '已刪除');
+          this.shareDialogService.openShareDialog(response.data.name + '已刪除');
           console.log(response);
           this.getTriData();
         }

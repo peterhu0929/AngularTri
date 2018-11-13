@@ -21,13 +21,19 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="standard-width">
-    <input matInput [(ngModel)]="newTridata.month" placeholder="月">
-  </mat-form-field>
+<mat-form-field class="standard-width">
+<mat-select placeholder="月" [(ngModel)]="newTridata.month">
+    <mat-option>-</mat-option>
+    <mat-option *ngFor="let i of months" [value]="i.CODE">
+      {{i.NAME}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
   <mat-form-field class="standard-width">
     <input matInput [(ngModel)]="newTridata.day" placeholder="日">
   </mat-form-field>
+
 
   <mat-form-field class="standard-width">
     <input matInput [(ngModel)]="newTridata.place" placeholder="比賽地點">
@@ -36,6 +42,7 @@
   <mat-form-field class="standard-width">
     <input matInput [(ngModel)]="newTridata.name" placeholder="比賽名稱">
   </mat-form-field>
+  <h3>競賽組別</h3>
   <div>
     <mat-card *ngFor="let i of newTridata.tri_event" class="card-added">
       <mat-form-field class="standard-width">
@@ -79,7 +86,7 @@
         <input matInput [(ngModel)]='newEvent.timelimit' placeholder="競賽限時">
       </mat-form-field>
       <button mat-fab color="primary" (click)="addEvent2TriData(newEvent)">
-        <span matTooltip="增加一筆">
+        <span matTooltip="增加一筆競賽組別">
           <mat-icon>add</mat-icon>
         </span>
       </button>

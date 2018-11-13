@@ -1,28 +1,54 @@
 <h2>台灣地區三鐵比賽</h2>
 <div>
-  <mat-form-field>
-    <input matInput placeholder="區域" [(ngModel)]="queryTridata.place">
+
+  <mat-form-field class="standard-width">
+    <mat-select placeholder="年" [(ngModel)]="queryTridata.year">
+      <mat-option>-</mat-option>
+      <mat-option value="2018"> 2018</mat-option>
+      <mat-option value="2019"> 2019</mat-option>
+      <mat-option value="2020"> 2020</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="standard-width">
+    <mat-select placeholder="起始月" [(ngModel)]="queryTridata.month_S">
+      <mat-option>-</mat-option>
+      <mat-option *ngFor="let i of months" [value]="i.CODE">
+        {{i.NAME}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field class="standard-width">
-    <input matInput placeholder="年月">
+    <mat-select placeholder="結束月" [(ngModel)]="queryTridata.month_E">
+      <mat-option>-</mat-option>
+      <mat-option *ngFor="let i of months" [value]="i.CODE">
+        {{i.NAME}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
-
-
+  <!-- <mat-form-field>
+    <input matInput placeholder="結束月" [(ngModel)]="queryTridata.month_E">
+  </mat-form-field> -->
+  <mat-form-field class="standard-width">
+    <input matInput placeholder="區域" [(ngModel)]="queryTridata.place">
+  </mat-form-field>
   <button mat-fab color="primary" (click)="getTriDataByQuery(queryTridata)">
     <span matTooltip="Search">
       <mat-icon>search</mat-icon>
     </span>
   </button>
-
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    <mat-hint align="end">至少打兩個字</mat-hint>
-  </mat-form-field>
   <button mat-fab color="warn" (click)="addTriData()">
     <span matTooltip="Add">
       <mat-icon>add</mat-icon>
     </span>
   </button>
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="關鍵字搜尋">
+      <mat-hint align="end">至少打兩個字</mat-hint>
+    </mat-form-field>
+  </div>
+
 
   <!-- {{tridata|json}}
 <div *ngFor="let i of tridata">
@@ -120,7 +146,7 @@
           </td>
         </ng-container>
         <ng-container matColumnDef="place">
-          <th mat-header-cell *matHeaderCellDef>place</th>
+          <th mat-header-cell *matHeaderCellDef>地點</th>
           <td mat-cell *matCellDef="let row">
             <div *ngIf="row.isDisabled">
               <mat-form-field>

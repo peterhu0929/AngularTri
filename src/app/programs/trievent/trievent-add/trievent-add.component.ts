@@ -20,6 +20,20 @@ export class TrieventAddComponent implements OnInit {
     { CODE: '0', NAME: '尚未開始報名' },
     { CODE: '100', NAME: '報名中' }
   ];
+  months: RecordGroup[] = [
+    { CODE: '01', NAME: '1' },
+    { CODE: '02', NAME: '2' },
+    { CODE: '03', NAME: '3' },
+    { CODE: '04', NAME: '4' },
+    { CODE: '05', NAME: '5' },
+    { CODE: '06', NAME: '6' },
+    { CODE: '07', NAME: '7' },
+    { CODE: '08', NAME: '8' },
+    { CODE: '09', NAME: '9' },
+    { CODE: '10', NAME: '10' },
+    { CODE: '11', NAME: '11' },
+    { CODE: '12', NAME: '12' },
+  ];
   constructor(
     private location: Location,
     private programService: ProgramsService,
