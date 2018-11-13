@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Triathlon } from '../_models/triathlon';
-import { environment } from 'src/environments/environment';
-
+// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +34,27 @@ export class ProgramsService {
   ): Observable<any> {
     const getURL = environment.TriBackendAPI + '/Triathlon/GetAllTri';
     return this.http.get<Triathlon>(getURL);
+  }
+  public getBackendDataByQuery(
+    parameter: Triathlon
+  ): Observable<Triathlon> {
+    const URL = environment.TriBackendAPI + '/Triathlon/GetTriById';
+    // const myparams = new URLSearchParams();
+    let myparams = new HttpParams();
+    if (parameter.id !== undefined && parameter.id !== '') {
+      myparams = myparams.set('Id', parameter.id);
+    }
+    if (parameter.date !== undefined && parameter.date !== '') {
+      myparams = myparams.set('dateS', parameter.date);
+    }
+    if (parameter.date !== undefined && parameter.date !== '') {
+      myparams = myparams.set('dateE', parameter.date);
+    }
+    if (parameter.place !== undefined && parameter.place !== '') {
+      myparams = myparams.set('place', parameter.place);
+    }
+    console.log(URL + '?' + myparams);
+    return this.http.get<Triathlon>(URL, { params: myparams });
   }
   public postBackendData(item: Triathlon): Observable<any> {
     // const _id = item.id;

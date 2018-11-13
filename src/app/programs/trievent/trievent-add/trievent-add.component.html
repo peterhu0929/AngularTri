@@ -1,20 +1,24 @@
-<p>
+<!-- <p>
   trievent-add works!
-</p>
+</p> -->
 <button mat-fab color="primary" (click)="goBack()">
-  <span matTooltip="Previous Page">
+  <span matTooltip="回前頁">
     <mat-icon>reply</mat-icon>
   </span>
 </button>
 <button mat-fab color="accent" (click)="createTriData(newTridata)">
-  <span matTooltip="Confirm">
+  <span matTooltip="確認新增">
     <mat-icon>file_download</mat-icon>
   </span>
 </button>
 
 <div>
   <mat-form-field class="standard-width">
-    <input matInput [(ngModel)]="newTridata.year" placeholder="年">
+    <mat-select [(ngModel)]="newTridata.year" placeholder="年">
+      <mat-option value="2018"> 2018</mat-option>
+      <mat-option value="2019"> 2019</mat-option>
+      <mat-option value="2020"> 2020</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field class="standard-width">
@@ -32,40 +36,53 @@
   <mat-form-field class="standard-width">
     <input matInput [(ngModel)]="newTridata.name" placeholder="比賽名稱">
   </mat-form-field>
-
   <div>
-    <div *ngFor="let i of newTridata.tri_event">
-      {{i.eventgroup}}
-      {{i.name}}
-      {{i.startDate}}
-      {{i.startTime}}
-      {{i.cost}}
-      {{i.timelimit}}
-    </div>
-<mat-card>
-    <mat-form-field class="standard-width">
-      <input matInput [(ngModel)]='newEvent.eventgroup' placeholder="組別">
-    </mat-form-field>
-    <mat-form-field class="standard-width">
-      <input matInput [(ngModel)]='newEvent.name' placeholder="競賽名稱">
-    </mat-form-field>
-    <mat-form-field class="standard-width">
-      <input matInput [(ngModel)]='newEvent.startDate' placeholder="競賽日期">
-    </mat-form-field>
-    <mat-form-field class="standard-width">
-      <input matInput [(ngModel)]='newEvent.startTime' placeholder="出發時間">
-    </mat-form-field>
-    <mat-form-field class="standard-width">
-      <input matInput [(ngModel)]='newEvent.cost' placeholder="報名費">
-    </mat-form-field>
-    <mat-form-field class="standard-width">
-      <input matInput [(ngModel)]='newEvent.timelimit' placeholder="競賽限時">
-    </mat-form-field>
-    <button mat-fab color="primary" (click)="addEvent2TriData(newEvent)">
-      <span matTooltip="Confirm">
-        <mat-icon>file_download</mat-icon>
-      </span>
-    </button>
+    <mat-card *ngFor="let i of newTridata.tri_event" class="card-added">
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='i.eventgroup' placeholder="組別" readonly>
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='i.name' placeholder="競賽名稱" readonly>
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='i.startDate' placeholder="競賽日期" readonly>
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='i.startTime' placeholder="出發時間" readonly>
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='i.cost' placeholder="報名費" readonly>
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='i.timelimit' placeholder="競賽限時" readonly>
+      </mat-form-field>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='newEvent.eventgroup' placeholder="組別">
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='newEvent.name' placeholder="競賽名稱">
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='newEvent.startDate' placeholder="競賽日期">
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='newEvent.startTime' placeholder="出發時間">
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='newEvent.cost' placeholder="報名費">
+      </mat-form-field>
+      <mat-form-field class="standard-width">
+        <input matInput [(ngModel)]='newEvent.timelimit' placeholder="競賽限時">
+      </mat-form-field>
+      <button mat-fab color="primary" (click)="addEvent2TriData(newEvent)">
+        <span matTooltip="增加一筆">
+          <mat-icon>add</mat-icon>
+        </span>
+      </button>
     </mat-card>
   </div>
 
@@ -90,9 +107,19 @@
     <input matInput [(ngModel)]="newTridata.onlineapplyurl" placeholder="線上報名網址">
   </mat-form-field>
 
-  <mat-form-field class="standard-width">
+  <!-- <mat-form-field class="standard-width">
     <input matInput [(ngModel)]="newTridata.status" placeholder="報名狀態">
+  </mat-form-field> -->
+
+  <mat-form-field>
+    <mat-select placeholder="報名狀態" [(ngModel)]="newTridata.status">
+      <mat-option *ngFor="let i of Eventstatus" [value]="i.CODE">
+        {{i.NAME}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
+
+
   <mat-form-field class="standard-width">
     <input matInput [(ngModel)]="newTridata.remark" placeholder="備註">
   </mat-form-field>

@@ -1,21 +1,28 @@
 <h2>台灣地區三鐵比賽</h2>
 <div>
   <mat-form-field>
-    <input matInput placeholder="區域">
+    <input matInput placeholder="區域" [(ngModel)]="queryTridata.place">
   </mat-form-field>
   <mat-form-field class="standard-width">
     <input matInput placeholder="年月">
   </mat-form-field>
 
+
+  <button mat-fab color="primary" (click)="getTriDataByQuery(queryTridata)">
+    <span matTooltip="Search">
+      <mat-icon>search</mat-icon>
+    </span>
+  </button>
+
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     <mat-hint align="end">至少打兩個字</mat-hint>
   </mat-form-field>
-<button mat-fab color="warn" (click)="addTriData()">
-  <span matTooltip="Add">
-    <mat-icon>add</mat-icon>
-  </span>
-</button>
+  <button mat-fab color="warn" (click)="addTriData()">
+    <span matTooltip="Add">
+      <mat-icon>add</mat-icon>
+    </span>
+  </button>
 
   <!-- {{tridata|json}}
 <div *ngFor="let i of tridata">
@@ -26,7 +33,8 @@
 </div> -->
 
   <div>
-<mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]" matSort>
+    <mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]"
+      matSort>
     </mat-paginator>
     <div>
       <table mat-table [dataSource]="tridataTable" matSort #sortTableUser="matSort">
@@ -71,16 +79,35 @@
           <td mat-cell *matCellDef="let row">{{ row.date }}</td>
         </ng-container>
         <ng-container matColumnDef="year">
-          <th mat-header-cell *matHeaderCellDef>year</th>
-          <td mat-cell *matCellDef="let row">{{ row.year }}</td>
+          <th mat-header-cell *matHeaderCellDef>年</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.isDisabled">
+              <mat-form-field class="inputSize">
+                <input matInput [(ngModel)]="row.year">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.year }}
+            </div>
+
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="month">
-          <th mat-header-cell *matHeaderCellDef>month</th>
-          <td mat-cell *matCellDef="let row">{{ row.month }}</td>
+          <th mat-header-cell *matHeaderCellDef>月</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.isDisabled">
+              <mat-form-field class="inputSize">
+                <input matInput [(ngModel)]="row.month">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.month }}
+            </div>
+          </td>
         </ng-container>
         <ng-container matColumnDef="day">
-          <th mat-header-cell *matHeaderCellDef>day</th>
+          <th mat-header-cell *matHeaderCellDef>日</th>
           <td mat-cell *matCellDef="let row">
             <div *ngIf="row.isDisabled">
               <mat-form-field class="inputSize">
@@ -94,11 +121,29 @@
         </ng-container>
         <ng-container matColumnDef="place">
           <th mat-header-cell *matHeaderCellDef>place</th>
-          <td mat-cell *matCellDef="let row">{{ row.place }}</td>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.isDisabled">
+              <mat-form-field>
+                <input matInput [(ngModel)]="row.place">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.place }}
+            </div>
+          </td>
         </ng-container>
-        <ng-container matColumnDef="name" >
-<th mat-header-cell *matHeaderCellDef mat-sort-header>name</th>
-          <td mat-cell *matCellDef="let row">{{row.name}}</td>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>競賽名稱</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.isDisabled">
+              <mat-form-field>
+                <input matInput [(ngModel)]="row.name">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.name }}
+            </div>
+          </td>
         </ng-container>
         <ng-container matColumnDef="RENTED_START_DATE">
           <th mat-header-cell *matHeaderCellDef>租約開始日</th>
@@ -110,39 +155,57 @@
             </mat-form-field>
           </td>
         </ng-container>
-        <ng-container matColumnDef="RENTED_END_DATE">
-          <th mat-header-cell *matHeaderCellDef>租約到期日</th>
+
+        <ng-container matColumnDef="organizer">
+          <th mat-header-cell *matHeaderCellDef>主辦單位</th>
           <td mat-cell *matCellDef="let row">
-            <mat-form-field class="inputSize">
-              <input matInput [matDatepicker]="RENTED_END_DATEpicker" [(ngModel)]="row.RENTED_END_DATE" [disabled]="true">
-              <mat-datepicker-toggle matSuffix [for]="RENTED_END_DATEpicker"></mat-datepicker-toggle>
-              <mat-datepicker #RENTED_END_DATEpicker></mat-datepicker>
-            </mat-form-field>
+            <div *ngIf="row.isDisabled">
+              <mat-form-field>
+                <input matInput [(ngModel)]="row.organizer">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.organizer }}
+            </div>
           </td>
         </ng-container>
-        <ng-container matColumnDef="organizer">
-          <th mat-header-cell *matHeaderCellDef>organizer</th>
-          <td mat-cell *matCellDef="let row">{{ row.organizer }}</td>
-        </ng-container>
         <ng-container matColumnDef="location">
-          <th mat-header-cell *matHeaderCellDef>location</th>
-          <td mat-cell *matCellDef="let row">{{ row.location }}</td>
+          <th mat-header-cell *matHeaderCellDef>競賽場地</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.isDisabled">
+              <mat-form-field>
+                <input matInput [(ngModel)]="row.location">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.location }}
+            </div>
+          </td>
         </ng-container>
         <ng-container matColumnDef="locationmap">
           <th mat-header-cell *matHeaderCellDef>locationmap</th>
           <td mat-cell *matCellDef="let row">{{ row.locationmap }}</td>
         </ng-container>
         <ng-container matColumnDef="applydate">
-          <th mat-header-cell *matHeaderCellDef>applydate</th>
-          <td mat-cell *matCellDef="let row">{{ row.applydate }}</td>
+          <th mat-header-cell *matHeaderCellDef>報名日期</th>
+          <td mat-cell *matCellDef="let row">
+            <div *ngIf="row.isDisabled">
+              <mat-form-field>
+                <input matInput [(ngModel)]="row.applydate">
+              </mat-form-field>
+            </div>
+            <div *ngIf="!row.isDisabled">
+              {{ row.applydate }}
+            </div>
+          </td>
         </ng-container>
         <ng-container matColumnDef="onlineapplyurl">
           <th mat-header-cell *matHeaderCellDef>onlineapplyurl</th>
           <td mat-cell *matCellDef="let row">{{ row.onlineapplyurl }}</td>
         </ng-container>
         <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>status</th>
-          <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+          <th mat-header-cell *matHeaderCellDef>報名狀態</th>
+          <td mat-cell *matCellDef="let row">{{ row.status| code2name:'EventStatus' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="remark">

@@ -5,6 +5,7 @@ import { ShareDialogService } from 'src/app/share-dialog/share-dialog.service';
 import { ProgramsService } from '../../programs.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { EVENT } from 'src/app/_models/event';
+import { RecordGroup } from 'src/app/_models/RecordGroup';
 @Component({
   selector: 'app-trievent-add',
   templateUrl: './trievent-add.component.html'
@@ -12,14 +13,21 @@ import { EVENT } from 'src/app/_models/event';
 export class TrieventAddComponent implements OnInit {
   public newTridata: Triathlon = new Triathlon();
   public newEvent: EVENT = new EVENT();
-  public Events: Array<EVENT> = new Array <EVENT>();
+  public Events: Array<EVENT> = new Array<EVENT>();
+
+  Month = 12;
+  Eventstatus: RecordGroup[] = [
+    { CODE: '-100', NAME: '報名已截止' },
+    { CODE: '0', NAME: '尚未開始報名' },
+    { CODE: '100', NAME: '報名中' }
+  ];
   constructor(
     private location: Location,
     private programService: ProgramsService,
     private shareDialogService: ShareDialogService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   /**回前頁 */
   goBack() {
@@ -30,7 +38,8 @@ export class TrieventAddComponent implements OnInit {
     this.programService.postBackendData(item).subscribe(
       (response: any) => {
         // console.log(item);
-        this.programService.openSnackBar(response.isSuccess, '已新增');
+        // this.programService.openSnackBar(response.isSuccess, '已新增');
+        this.shareDialogService.openShareDialog(response.data.name + '新增成功');
         // console.log(response);
       },
       (error: HttpErrorResponse) => this.programService.HandleError(error)

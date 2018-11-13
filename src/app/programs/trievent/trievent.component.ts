@@ -25,7 +25,8 @@ export class TrieventComponent implements OnInit {
   public tridataTable = new MatTableDataSource<Triathlon>();
   public totalCount = 0;
   public tridata: Array<Triathlon>;
-  displayedColumns: string[] = ['EDIT_BUTTON', 'DELETE_BUTTON', 'Detail', 'date', 'year', 'month'
+  public queryTridata: Triathlon = new Triathlon();
+  displayedColumns: string[] = ['EDIT_BUTTON', 'DELETE_BUTTON', 'Detail', 'year', 'month'
     , 'day', 'place', 'name', 'organizer', 'location', 'applydate', 'status'];
 
   // 'locationmap', 'onlineapplyurl'
@@ -81,6 +82,20 @@ export class TrieventComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
+  getTriDataByQuery(item: Triathlon) {
+    this.programService.getBackendDataByQuery(item)
+      .subscribe(
+        (response: any) => {
+          this.tridataTable.data = response.data;
+          this.tridataTable.paginator = this.paginator;
+          this.tridataTable.sort = this.sortTable;
+          this.totalCount = response.data.length;
+          // console.log(this.tridata);
+          // console.log(this.tridataTable.data);
+        }
+        , (error: HttpErrorResponse) => this.programService.HandleError(error)
+      );
+  }
   // Data Table Filter功能
   applyFilter(filterValue: string) {
     // console.log(filterValue);
@@ -91,7 +106,7 @@ export class TrieventComponent implements OnInit {
     }
   }
   updateTriData(item: Triathlon) {
-   this.shareDialogService.openShareDialog(JSON.stringify(item));
+    this.shareDialogService.openShareDialog(JSON.stringify(item));
     this.programService
       .putBackendData(item)
       .subscribe(

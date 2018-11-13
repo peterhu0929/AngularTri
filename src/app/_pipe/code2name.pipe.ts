@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export enum PipeParm {
   CompileStatus = 'CompileStatus',
   CompilePGType = 'CompilePGType',
-  YN2Boolean = 'YN2Boolean'
+  YN2Boolean = 'YN2Boolean',
+  EventStatus = 'EventStatus'
 }
 @Pipe({
   name: 'code2name'
@@ -32,6 +33,15 @@ export class Code2namePipe implements PipeTransform {
         name = '.scss';
       } else if (code === 'ALL') {
         name = '全部';
+      }
+    }
+    if (exponent === PipeParm.EventStatus) {
+      if (code === '-100') {
+        name = '報名已截止';
+      } else if (code === '0') {
+        name = '尚未開始報名';
+      } else if (code === '100') {
+        name = '報名中';
       }
     }
     return name;
