@@ -14,7 +14,6 @@ export class TrieventAddComponent implements OnInit {
   public newTridata: Triathlon = new Triathlon();
   public newEvent: EVENT = new EVENT();
   public Events: Array<EVENT> = new Array<EVENT>();
-
   Month = 12;
   Eventstatus: RecordGroup[] = [
     { CODE: '-100', NAME: '報名已截止' },
